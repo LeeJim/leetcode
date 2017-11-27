@@ -20,11 +20,25 @@ var maxSubArray = function(nums) {
         if (sum > max) max = sum
       }
     }
-
     return max
 }
 
-// console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
-// console.log(maxSubArray([1]))
-// console.log(maxSubArray([-2,1]))
-console.log(maxSubArray([-1,0,-2]))
+var maxSubArray1 = function(nums) {
+  var length = nums.length
+  var dp = new Array(length)
+  var max = nums[0]
+
+  dp[0] = nums[0]
+
+  for (let i = 1; i < length; i++) {
+    dp[i] = nums[i] + (dp[i-1] > 0 ? dp[i-1] : 0)
+    max = Math.max(dp[i], max)
+  }
+
+  return max
+}
+
+console.log(maxSubArray1([-2,1,-3,4,-1,2,1,-5,4]))
+console.log(maxSubArray1([1]))
+console.log(maxSubArray1([-2,1]))
+console.log(maxSubArray1([-1,0,-2]))
